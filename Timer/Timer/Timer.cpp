@@ -29,14 +29,11 @@ int main()
 
 
     if (dayscounter == 0) {
-        cout << ((seconds + addseconds) / 60 + minutes + addminutes) / 60 + hours + addhours << ":" 
-            << ((seconds + addseconds) / 60 + minutes + addminutes) % 60
+        cout << (((seconds + addseconds) / 60 + minutes + addminutes) / 60 + hours + addhours) % 24 << ":" 
+            << ((seconds + addseconds) / 60 + minutes + addminutes) % 60 << ":" << (seconds + addseconds) % 60;
     }
     else {
-        cout << dayscounter;
+        cout << (((seconds + addseconds) / 60 + minutes + addminutes) / 60 + hours + addhours) % 24 << ":" 
+            << ((seconds + addseconds) / 60 + minutes + addminutes) % 60 << ":" << (seconds + addseconds) % 60 << " + " << dayscounter << " days";
     }
-
-
-    
-    
 }
