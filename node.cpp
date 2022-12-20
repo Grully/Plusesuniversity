@@ -29,7 +29,6 @@ public:
 	}
 
 	void printNode() {
-		cout << index << ". ";
 		cout << "First name: " << firstName << endl << "Last name: " << lastName << endl;
 		cout << "Grade for firstSubject is: " << firstSubject << "\nGrade for second subject is: " << secondSubject << "\nGrade for third subject is: " << thirdSubject << endl;
 		
