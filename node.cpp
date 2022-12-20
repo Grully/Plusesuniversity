@@ -10,7 +10,7 @@ class NodeStudent {
 	int thirdSubject;
 	string firstName;
 	string lastName;
-	int* listreference;
+	NodeStudent* listreference;
 	int index;
 
 public:
@@ -21,7 +21,7 @@ public:
 		firstName = "";
 		lastName = "";
 		listreference = nullptr;
-		index = 0;
+		index = 1;
 	}
 	NodeStudent(int firstSubject, int secondSubject, int thirdSubject, string firstName, string lastName, int index) {
 		this->firstSubject = firstSubject;
@@ -41,10 +41,3 @@ public:
 	}
 
 };
-
-int main()
-{
-	NodeStudent node = NodeStudent(3, 3, 5, "Berezin", "Alexey", 1);
-	node.printNode();
-	
-}
