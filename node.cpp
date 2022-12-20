@@ -1,36 +1,32 @@
-#include <string>
-#include <iostream>
-using std::string;
-using std::cout;
-using std::endl;
+#include<iostream>
+#include<string>
 
+using namespace std;
 class NodeStudent {
+
+public:
 	int firstSubject;
 	int secondSubject;
 	int thirdSubject;
 	string firstName;
 	string lastName;
-	NodeStudent* listreference;
 	int index;
-
-public:
+	NodeStudent* next;
 	NodeStudent() {
 		firstSubject = 0;
 		secondSubject = 0;
 		thirdSubject = 0;
 		firstName = "";
 		lastName = "";
-		listreference = nullptr;
-		index = 1;
+		next = nullptr;
 	}
-	NodeStudent(int firstSubject, int secondSubject, int thirdSubject, string firstName, string lastName, int index) {
+	NodeStudent(int firstSubject, int secondSubject, int thirdSubject, string firstName, string lastName) {
 		this->firstSubject = firstSubject;
 		this->secondSubject = secondSubject;
 		this->thirdSubject = thirdSubject;
 		this->firstName = firstName;
 		this->lastName = lastName;
-		this->listreference = nullptr;
-		this->index = index;
+		this->next = nullptr;
 	}
 
 	void printNode() {
