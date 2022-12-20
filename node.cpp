@@ -10,7 +10,6 @@ public:
 	int thirdSubject;
 	string firstName;
 	string lastName;
-	int index;
 	NodeStudent* next;
 	NodeStudent() {
 		firstSubject = 0;
