@@ -1,49 +1,54 @@
+#include "NodeStudent.h"
 class StudentList {
 
 public:
     NodeStudent* first;
     NodeStudent* last;
-    StudentList() : first(nullptr), last(nullptr) {}
-  
-  bool is_empty() {
-    return first == nullptr;
-}
+    int size;
 
-  void addToEnd() {
-    cout << "Enter data in format int firstSubject, int secondSubject, int thirdSubject, string firstName, string lastName" << endl;
-    int FirstSubject;
-    cin >> FirstSubject;
-    int SecondSubject;
-    cin >> SecondSubject;
-    int ThirdSubject;
-    cin >> ThirdSubject;
-    string FirstName;
-    cin >> FirstName;
-    string LastName;
-    cin >> LastName;
-    NodeStudent* p = new NodeStudent(FirstSubject, SecondSubject, ThirdSubject, FirstName, LastName);
-    if (is_empty()) {
-      first = p;
-      last = p;
-      return;
+    StudentList() : first(nullptr), last(nullptr), size(0) {}
+
+    bool is_empty() {
+        return first == nullptr;
     }
-    last->next = p;
-    last = p;
+
+    void addToEnd() {
+        cout << "Enter data in format int firstSubject, int secondSubject, int thirdSubject, string firstName, string lastName" << endl;
+        int FirstSubject;
+        cin >> FirstSubject;
+        int SecondSubject;
+        cin >> SecondSubject;
+        int ThirdSubject;
+        cin >> ThirdSubject;
+        string FirstName;
+        cin >> FirstName;
+        string LastName;
+        cin >> LastName;
+        NodeStudent* p = new NodeStudent(FirstSubject, SecondSubject, ThirdSubject, FirstName, LastName);
+        size++;
+        if (is_empty()) {
+            first = p;
+            last = p;
+            return;
+        }
+        last->next = p;
+        last = p;
     }
-      void print() {
-    if (is_empty()) return;
-    NodeStudent* p = first;
-    while (p) { 
-      p->printNode();
-      p = p->next;
+    void print() {
+        if (is_empty()) return;
+        NodeStudent* p = first;
+        while (p) {
+            p->printNode();
+            p = p->next;
+        }
+        cout << endl;
     }
-    cout << endl;
-      }
-        void remove_first() {
+    void remove_first() {
         if (is_empty()) return;
         NodeStudent* p = first;
         first = p->next;
         delete p;
+        size--;
     }
 
     void remove_last() {
@@ -57,8 +62,9 @@ public:
         p->next = nullptr;
         delete last;
         last = p;
+        size--;
     }
-        NodeStudent* operator[] (const int index) {
+    NodeStudent* operator[] (const int index) {
         if (is_empty()) return nullptr;
         NodeStudent* p = first;
         for (int i = 0; i < index; i++) {
@@ -67,10 +73,43 @@ public:
         }
         return p;
     }
+
+    void sort() {
+        NodeStudent* a, * b;
+        NodeStudent* p1, * p2, * r1, * r2;
+
+        for (p1 = r1 = first; p1 != nullptr; p1 = p1->next) {
+            a = p2 = r2 = p1;
+            for (b = p1->next; b != nullptr; b = b->next) {
+                if (b->lastName < p2->lastName) {
+                    r2 = a;
+                    p2 = b;
+                }
+                a = b;
+            }
+
+            if (p1 != p2) {
+                if (p1 == first)
+                    first = p2;
+                else
+                    r1->next = p2;
+
+                b = p2->next;
+                if (p1 == r2) {
+                    p2->next = p1;
+                    p1->next = b;
+                }
+                else {
+                    a = p1->next;
+                    r1->next = p2;
+                    r2->next = p1;
+                    p1->next = b;
+                    p2->next = a;
+                }
+                p1 = p2;
+            }
+            r1 = p1;
+        }
+    }
 };
 
-int main(){
-    StudentList l = StudentList();
-    l.addToEnd();
-    return 0;
-}
