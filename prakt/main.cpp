@@ -1,3 +1,4 @@
+#include "StudentList.h"
 int main(){
     StudentList l = StudentList();
     while(true){
